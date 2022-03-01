@@ -1,10 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose')
 
-const Tree = require('./models/Tree')
+const Tree = require('../models/Tree')
 var router = express.Router();
 
-router.get('/tree', function(req, res, next) {
+router.get('/tree', async (req, res, next) => {
   const tree = await Tree.find({}).populate('children')
 	res.send(tree)
 });
