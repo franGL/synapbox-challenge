@@ -13,13 +13,15 @@ router.post('/tree', async (req, res) => {
   try {
 		const nodeTree = await Tree.findOne({ _id: req.body.parent })
 
-    const newNode = new Tree({
-      label: req.body.label,
-    })
+    if (nodeTree) {
+      const newNode = new Tree({
+        label: req.body.label,
+      })
+  
+      nodeTree.children.push(newNode);
+      await nodeTree.save();
+    } 
 
-    nodeTree.children.push(newNode);
-    await nodeTree.save();
-    
     res.send(nodeTree)
 	} catch {
 		res.status(404)
