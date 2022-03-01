@@ -7,8 +7,10 @@ const mongoose = require('mongoose')
 
 var indexRouter = require('./routes/index');
 
+// Before Node 17 -> localhost
+// On, After Node 17 -> 127.0.0.1
 mongoose
-	.connect('mongodb://localhost:27017/synapboxdb', { useNewUrlParser: true })
+	.connect('mongodb://127.0.0.1:27017/synapboxdb', { useNewUrlParser: true })
 	.then(() => {
 		const app = express()
 
@@ -23,4 +25,4 @@ mongoose
 		app.listen(5000, () => {
 			console.log('DB has started!')
 		})
-	})
+	}).catch(reason => console.log(reason))
