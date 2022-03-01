@@ -1,10 +1,7 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-	_id: {
-        type: Number,
-        unique: true
-    },
+	_id: Number,
 	label: String,
     children:[{ ref: this }],
 })
