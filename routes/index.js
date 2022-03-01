@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose')
 
 const Tree = require('../models/Tree')
 var router = express.Router();
@@ -64,17 +63,4 @@ router.delete('/tree/:id', async (req, res) => {
 	}
 })
 
-// module.exports = router;
-
-mongoose
-	.connect('mongodb://localhost:27017/synapboxdb', { useNewUrlParser: true })
-	.then(() => {
-		const app = express()
-
-    app.use(express.json())
-    app.use('/api', router)
-
-		app.listen(5000, () => {
-			console.log('DB has started!')
-		})
-	})
+module.exports = router;
